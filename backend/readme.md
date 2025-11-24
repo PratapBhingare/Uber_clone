@@ -97,4 +97,4 @@ The `/users/login` endpoint is used to authenticate an existing user. It checks 
   - `type` field  
   - `msg` Validation error message  
   - `path` Field that failed  
-  - `location` body  
+  - `location` body 
