@@ -58,3 +58,43 @@ The `/users/register` endpoint is used to register a new user. It validates inpu
 ### Email Already Exists Error (409)
 
 * `error` Email already exists
+
+
+------------------------------------------------------------------------------------------
+
+
+
+## `/users/login` – User Login API
+
+### Description
+The `/users/login` endpoint is used to authenticate an existing user. It checks the email and password, validates input, compares the hashed password, and returns a JWT token along with user data.
+
+### Method & URL
+**POST** `/users/login`
+
+### Request Body Format
+- `email` (required, valid email)
+- `password` (required, min 6 chars)
+
+### Required Fields & Validation Rules
+- `email` Required, valid email  
+- `password` Required, min 6 chars  
+
+### Success Response (200)
+- `token` jwt_generated_token_here  
+- `user`  
+  - `_id` user_id_here  
+  - `fullname`  
+    - `firstname` John  
+    - `lastname` Doe  
+  - `email` john@example.com  
+
+### Invalid Credentials Response (401)
+- `message` Invalid Email or Password  
+
+### Validation Error Response (400)
+- `errors`  
+  - `type` field  
+  - `msg` Validation error message  
+  - `path` Field that failed  
+  - `location` body  
