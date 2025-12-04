@@ -133,3 +133,27 @@ The `/users/profile` endpoint returns the authenticated user's details. It requi
 ### Invalid Token Response (401)
 - `message` Unauthorized  
 (Occurs when token is expired or invalid)
+
+
+-----------------------------------------------------------------------
+
+## `/users/logout` – User Logout API
+
+### Description
+The `/users/logout` endpoint logs out the authenticated user by clearing the token cookie and adding the token to the blacklist so it cannot be reused.
+
+### Method & URL
+**POST** `/users/logout`
+
+### Authentication
+- Requires a valid JWT token  
+- Token can be provided in  
+  - Cookies (`token`)  
+  - Authorization header `Bearer <token>`  
+
+### Success Response (200)
+- `message` logged Out
+
+### Unauthorized Response (401)
+- `message` Unauthorized user  
+(Occurs if the route is protected and the token is missing)
