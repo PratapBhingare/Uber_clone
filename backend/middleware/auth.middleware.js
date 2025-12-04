@@ -1,6 +1,6 @@
 const userModel = require('../models/userModel');
 const jwt = require("jsonwebtoken");
-// const blackTokenModel = require('../models/blacklistedTokenModel');
+const blackTokenModel = require('../models/blacklistedTokenModel');
 
 module.exports.authUser = async (req, res, next) => {
     const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
@@ -9,11 +9,12 @@ module.exports.authUser = async (req, res, next) => {
         return res.status(401).json({ message: "Unauthorized user" });
     }
 
-    // const isBlack = await blackTokenModel.findOne({ token: token });
+    const isBlack = await blackTokenModel.findOne({ token: token });
 
-    // if (isBlack) {
-    //     return res.status(401).json({ message: "Unauthorized user" });
-    // }
+    if (isBlack) {
+        return res.status(401).json({ message: "Unauthorized user" });
+    }
+
 
     try {
 
