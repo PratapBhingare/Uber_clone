@@ -98,3 +98,38 @@ The `/users/login` endpoint is used to authenticate an existing user. It checks 
   - `msg` Validation error message  
   - `path` Field that failed  
   - `location` body 
+
+
+------------------------------------------------------------------------------------------
+
+
+## `/users/profile` – Get User Profile
+
+### Description
+The `/users/profile` endpoint returns the authenticated user's details. It requires a valid JWT token which is checked through middleware before the user data is returned.
+
+### Method & URL
+**GET** `/users/profile`
+
+### Authentication
+- Requires JWT token  
+- Token must not be blacklisted  
+- Token can be provided in  
+  - Cookies (`token`)  
+  - Authorization header `Bearer <token>`  
+
+### Success Response (200)
+- `_id` user_id_here  
+- `fullname`  
+  - `firstname` John  
+  - `lastname` Doe  
+- `email` john@example.com  
+- Any other user fields stored in the database  
+
+### Unauthorized Response (401)
+- `message` Unauthorized user  
+(Occurs when no token is provided or token is blacklisted)
+
+### Invalid Token Response (401)
+- `message` Unauthorized  
+(Occurs when token is expired or invalid)
