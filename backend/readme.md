@@ -157,3 +157,70 @@ The `/users/logout` endpoint logs out the authenticated user by clearing the tok
 ### Unauthorized Response (401)
 - `message` Unauthorized user  
 (Occurs if the route is protected and the token is missing)
+
+
+--------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
+
+## `/captains/register` – Captain Registration API
+
+### Description
+
+The `/captains/register` endpoint is used to register a new captain. It validates input, hashes the password, saves the captain, and returns a JWT token.
+
+### Method & URL
+
+**POST** `/captains/register`
+
+### Request Body Format
+
+* `fullname`
+
+  * `firstname` (required, min 3 chars)
+  * `lastname` (optional, min 3 chars)
+* `email` (required, valid email)
+* `password` (required, min 6 chars)
+* `vehicle`
+
+  * `color` (required)
+  * `plate` (required)
+  * `capacity` (required)
+  * `vehicleType` (required)
+
+### Required Fields & Validation Rules
+
+* `fullname.firstname` Required, min 3 chars
+* `fullname.lastname` Optional, min 3 chars
+* `email` Required, valid email
+* `password` Required, min 6 chars
+* `vehicle.color` Required
+* `vehicle.plate` Required
+* `vehicle.capacity` Required
+* `vehicle.vehicleType` Required
+
+### Success Response (201)
+
+* `token` jwt_generated_token_here
+* `captain`
+
+  * `_id` captain_id_here
+  * `fullname`
+
+    * `firstname` John
+    * `lastname` Doe
+  * `email` [john@example.com](mailto:john@example.com)
+  * `vehicle`
+
+    * `color` Red
+    * `plate` ABC123
+    * `capacity` 4
+    * `vehicleType` Sedan
+
+### Validation Error Response (400)
+
+* `error` List of validation errors
+
+### Duplicate Email Error (401)
+
+* `message` This email already exists
