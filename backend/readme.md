@@ -314,3 +314,32 @@ The `/captains/profile` endpoint retrieves the authenticated captain's profile i
 
 * `message` Unauthorized user
   (Occurs if the token is missing, blacklisted, or invalid)
+
+  ---------------------------------------------------------------------------------------
+
+  ## `/captains/logout` – Captain Logout API
+
+### Description
+
+The `/captains/logout` endpoint logs out the authenticated captain by clearing the token cookie and adding the token to the blacklist so it cannot be reused.
+
+### Method & URL
+
+**POST** `/captains/logout`
+
+### Authentication
+
+* Requires a valid JWT token
+* Token can be provided in
+
+  * Cookies (`token`)
+  * Authorization header `Bearer <token>`
+
+### Success Response (200)
+
+* `message` logged Out
+
+### Unauthorized Response (401)
+
+* `message` Unauthorized user
+  (Occurs if the route is protected and the token is missing)
