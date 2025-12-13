@@ -272,3 +272,45 @@ The `/captains/login` endpoint authenticates a captain using email and password.
 ### Validation Error Response (401)
 
 * `error` List of validation errors
+
+-----------------------------------------------------------------------------------
+
+## `/captains/profile` – Captain Profile API
+
+### Description
+
+The `/captains/profile` endpoint retrieves the authenticated captain's profile information. The route is protected and requires a valid JWT token.
+
+### Method & URL
+
+**GET** `/captains/profile`
+
+### Authentication
+
+* Requires a valid JWT token
+* Token can be provided in
+
+  * Cookies (`token`)
+  * Authorization header `Bearer <token>`
+
+### Success Response (200)
+
+* `captain`
+
+  * `_id` captain_id_here
+  * `fullname`
+
+    * `firstname` John
+    * `lastname` Doe
+  * `email` [john@example.com](mailto:john@example.com)
+  * `vehicle`
+
+    * `color` Red
+    * `plate` ABC123
+    * `capacity` 4
+    * `vehicleType` Sedan
+
+### Unauthorized Response (401)
+
+* `message` Unauthorized user
+  (Occurs if the token is missing, blacklisted, or invalid)
