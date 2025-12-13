@@ -224,3 +224,51 @@ The `/captains/register` endpoint is used to register a new captain. It validate
 ### Duplicate Email Error (401)
 
 * `message` This email already exists
+
+-------------------------------------------------------------------------------
+
+## `/captains/login` – Captain Login API
+
+### Description
+
+The `/captains/login` endpoint authenticates a captain using email and password. Upon successful login, it returns a JWT token and the captain's details, and sets the token in a cookie.
+
+### Method & URL
+
+**POST** `/captains/login`
+
+### Authentication
+
+* Does not require authentication to login
+
+### Request Body Format
+
+* `email` (required, valid email)
+* `password` (required, min 6 chars)
+
+### Success Response (201)
+
+* `token` jwt_generated_token_here
+* `captain`
+
+  * `_id` captain_id_here
+  * `fullname`
+
+    * `firstname` John
+    * `lastname` Doe
+  * `email` [john@example.com](mailto:john@example.com)
+  * `vehicle`
+
+    * `color` Red
+    * `plate` ABC123
+    * `capacity` 4
+    * `vehicleType` Sedan
+
+### Unauthorized Response (401)
+
+* `message` Invalid email or password
+  (Occurs if email does not exist or password is incorrect)
+
+### Validation Error Response (401)
+
+* `error` List of validation errors
