@@ -7,6 +7,7 @@ import CaptainLogin from "./Pages/CaptainLogin";
 import CaptainSignup from "./Pages/CaptainSignup";
 import Home from "./Pages/Home";
 import UserLogout from "./Pages/UserLogout";
+import UserProtectWrapper from "./Pages/UserProtectWrapper";
 
 function App() {
   return (
