@@ -1,0 +1,45 @@
+.uber {
+    position: relative;
+    width: 70px;
+    /* make .backBtn position relative to this */
+}
+
+.uberIcon {
+    transform: translateX(0%);
+    /* start completely off-screen to the left */
+    transition: all 0.5s ease;
+    cursor: pointer;
+
+}
+
+.backBtn {
+    position: absolute;
+    top: 0%;
+    /* center vertically */
+    left: 0;
+    /* starting point */
+    transform: translateX(100%);
+    /* start completely off-screen to the left */
+    opacity: 0;
+    /* hidden initially */
+    cursor: pointer;
+    transition: all 0.5s ease;
+    /* smooth animation */
+}
+
+.uber:hover  .backBtn {
+    transform: translateX(10%);
+    /* slide into view */
+    opacity: 1;
+    transform: scale(1.3);
+
+    /* fade in */
+}
+
+
+.uber:hover .uberIcon{
+    transform: translateX(50%);
+    /* slide into view */
+    opacity: 1;
+    /* fade in */
+}
