@@ -11,7 +11,7 @@ function Home() {
   const [pickLocation, setPickLocation] = useState("")
   const [destination, setDestination] = useState("")
   const [vehiclePanel, setVehiclePanel] = useState(false)
-  const [confirmRidePanel, seConfirmRidePanel] = useState(false)
+  const [confirmRidePanel, setConfirmRidePanel] = useState(false)
   const panelRef = useRef(null)
   const vehiclePanelRef = useRef(null)
   const confirmRidePanelRef = useRef(null)
