@@ -3,12 +3,18 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ChevronDown, LocateFixed, MapPinHouse } from 'lucide-react'
 import LocationSearchPanel from '../Components/LocationSearchPanel'
+import VehiclePanel from '../Components/VehiclePanel'
+import ConfirmRide from '../Components/ConfirmRide'
 
 function Home() {
   const [panelOpen, setPanelOpen] = useState(false)
   const [pickLocation, setPickLocation] = useState("")
   const [destination, setDestination] = useState("")
+  const [vehiclePanel, setVehiclePanel] = useState(false)
+  const [confirmRidePanel, seConfirmRidePanel] = useState(false)
   const panelRef = useRef(null)
+  const vehiclePanelRef = useRef(null)
+  const confirmRidePanelRef = useRef(null)
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -26,6 +32,29 @@ function Home() {
     }
   }, [panelOpen])
 
+  useGSAP(() => {
+    if (vehiclePanel) {
+      gsap.to(vehiclePanelRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(vehiclePanelRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [vehiclePanel])
+  
+  useGSAP(() => {
+    if (confirmRidePanel) {
+      gsap.to(confirmRidePanelRef.current, {
+        transform: 'translateY(0)'
+      })
+    } else {
+      gsap.to(confirmRidePanelRef.current, {
+        transform: 'translateY(100%)'
+      })
+    }
+  }, [confirmRidePanel])
 
 
   return (
@@ -66,10 +95,15 @@ function Home() {
             </form>
           </div>
           <div ref={panelRef} className='h-0 bg-white px-6'>
-            <LocationSearchPanel/>
+            <LocationSearchPanel setPanelOpen={setPanelOpen} setVehiclePanel={setVehiclePanel} />
           </div>
         </div>
-        
+        <div ref={vehiclePanelRef} className='fixed z-10 bottom-0 p-3 py-6 translate-y-full bg-white w-full'>
+          <VehiclePanel setVehiclePanel={setVehiclePanel}/>
+        </div>
+        <div ref={confirmRidePanelRef} className='fixed z-10 bottom-0 p-3 py-6 translate-y-full bg-white w-full'>
+          <ConfirmRide setConfirmRidePanel={setConfirmRidePanel}/>
+        </div>
       </div>
     </div>
 
